@@ -2,9 +2,12 @@ import Board from './components/Board';
 
 function App() {
   return (
-   <>
-     <Board />
-   </>
+    <>
+    <h1>Game of Life</h1>
+      <div className='app-container'>
+        <Board />
+      </div>
+    </>
   );
 }
 

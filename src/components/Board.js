@@ -8,7 +8,7 @@ let clickedCellAlive = false
 const Board = () => {
 
   const [gameBoard, setGameBoard] = useState([[]])
-  
+  let boardSize = 16;
 
   useEffect(() => {
     initializeBoard()
@@ -16,11 +16,11 @@ const Board = () => {
 
   function initializeBoard(){
     let newBoard = [];
-    for(let i = 0; i < 10; i++){
+    for(let i = 0; i < boardSize; i++){
       let newRow = []
-      for(let j = 0; j < 10; j++){
+      for(let j = 0; j < boardSize; j++){
         const cell = {
-          id: i * 10 + j,
+          id: i * boardSize + j,
           alive: false,
           row: i,
           col: j
@@ -104,10 +104,14 @@ const Board = () => {
     setGameBoard(next)
   } //iterate()
 
+  function clear(){
+    initializeBoard()
+  }
+
   let rowKey = 0;
 
   return (
-      <div className='board-container'>
+      <>
         <table className='board-table'>
           <tbody>
             {gameBoard.map(row => 
@@ -117,8 +121,11 @@ const Board = () => {
           </tbody>
         </table>
 
-        <button className='button-next' onClick={() => iterate()}>Next Iteration</button>
-      </div> 
+        <div className='button-container'>
+          <button className='button-next' onClick={() => iterate()}>Next Iteration</button>
+          <button className='button-clear' onClick={() => clear()}>Clear</button>
+        </div>
+      </> 
   )
 }
 
