@@ -20,6 +20,11 @@ h1 {
   font-size: 4rem;
   margin: 0 auto;
   text-align: center;
+  font-weight: 500;
+}
+
+p {
+  font-family:'Open Sans';
 }
 
 .app-container {
@@ -28,13 +33,14 @@ h1 {
   flex-direction: column;
   position: absolute;
   margin: 2rem auto;
-  width: 60%;
+  width: fit-content;
   border: 0.2rem dashed #000000;
   padding: 3rem;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  text-align: centerl
+  text-align: center;
+
 }
 
 .board-table {
@@ -58,6 +64,8 @@ h1 {
 
 .button-container {
   display: flex;
+  justify-content: center;
+  gap: 1rem;
 }
 
 .button {
@@ -66,14 +74,16 @@ h1 {
   margin-left: auto;
   margin-right: auto;
   padding: 0.4rem 1rem;
-  border: 0.2rem solid green
+  border: 0.2rem solid green;
+
+  flex-grow: 1
 }
 
 .button:active {
   background-color: rgb(207, 206, 206);
 }
 
-.button:hover {
+.button:hover, .button-active {
   border: 0.2rem solid rgb(46, 201, 46);
 }
 

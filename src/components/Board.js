@@ -12,6 +12,7 @@ const Board = () => {
   const gameBoardRef = useRef({})
   gameBoardRef.current = gameBoard
   const [playDelay, setPlayDelay] = useState(1000)
+  const [gameState, setGameState] = useState('stopped')
   let boardSize = 16;
 
   useEffect(() => {
@@ -65,18 +66,21 @@ const Board = () => {
   }
 
   function play(){
-    if(!playInterval)
-      playInterval = setInterval(iterate, playDelay);
+    if(!playInterval){
+      playInterval = setInterval(step, playDelay);
+      setGameState('playing')
+    }
   }
 
   function pause(){
     if(playInterval){
       clearInterval(playInterval)
       playInterval = null
+      setGameState('paused')
     }
   }
 
-  function iterate(){
+  function step(){
     let next = gameBoardRef.current.map(row => {
     return row.map(cell => {
         return {
@@ -127,15 +131,20 @@ const Board = () => {
 
     //stop play interval if board becomes empty
     if(checkBoardEmpty()){
-      pause()
+      stop()
     }
-  } //iterate()
+  } //step()
 
   function clear(){
     pause()
     initializeBoard()
+    setGameState('stopped')
   }
 
+  function stop(){
+    pause()
+    setGameState('stopped')
+  }
   function checkBoardEmpty(){
     let flag = true;
 
@@ -170,9 +179,9 @@ const Board = () => {
         </table>
 
         <div className='button-container'>
-          <button className='button button-play' onClick={() => play()}>Play</button>
-          <button className='button button-pause' onClick={() => pause()}>Pause</button>
-          <button className='button button-next' onClick={() => iterate()}>Next Iteration</button>
+          <button className={'button button-play' + (gameState==='playing' ? ' button-active' : '')} onClick={() => play()}>Play</button>
+          <button className={'button button-pause' + (gameState ==='paused' ? ' button-active' : '')} onClick={() => pause()}>Pause</button>
+          <button className='button button-step' onClick={() => step()}>Step</button>
           <button className='button button-clear' onClick={() => clear()}>Clear</button> 
         </div>
 
