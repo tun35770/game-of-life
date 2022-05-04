@@ -4,19 +4,26 @@ import { useState, useEffect, useRef} from 'react'
 
 let mouseIsDown = false
 let clickedCellAlive = false
-let playDelay = 1000;
 let playInterval;
-
+let delayValues = [10,50,100,200,500,1000,2000,3000]
 const Board = () => {
 
   const [gameBoard, setGameBoard] = useState([[]])
   const gameBoardRef = useRef({})
   gameBoardRef.current = gameBoard
+  const [playDelay, setPlayDelay] = useState(1000)
   let boardSize = 16;
 
   useEffect(() => {
     initializeBoard()
   }, [])
+
+  useEffect(() => {
+    let int = playInterval
+    pause()
+    if(int)
+      play()
+  }, [playDelay])
 
   function initializeBoard(){
     let newBoard = [];
@@ -145,6 +152,10 @@ const Board = () => {
     return flag
   }
 
+  function onDelayChange(e){
+    setPlayDelay(delayValues[e.target.value]);
+  }
+
   let rowKey = 0;
 
   return (
@@ -163,6 +174,11 @@ const Board = () => {
           <button className='button button-pause' onClick={() => pause()}>Pause</button>
           <button className='button button-next' onClick={() => iterate()}>Next Iteration</button>
           <button className='button button-clear' onClick={() => clear()}>Clear</button> 
+        </div>
+
+        <div className='slider-container'>
+          <p>Game Speed (Delay in ms): {playDelay}</p>
+          <input type="range" min="0" max="7" defaultValue="4" className="slider slider-delay" onChange={((e) => onDelayChange(e))}/>
         </div>
       </> 
   )
