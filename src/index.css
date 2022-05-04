@@ -69,6 +69,10 @@ h1 {
 }
 
 
-.button-next:active {
-  background-color: rgb(167, 167, 167);
+.button-next:active, .button-clear:active {
+  background-color: rgb(207, 206, 206);
+}
+
+.button-next:hover, .button-clear:hover {
+  border: 0.2rem solid rgb(46, 201, 46);
 }
