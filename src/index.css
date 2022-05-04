@@ -11,3 +11,32 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+
+.board-container {
+  border: 1px solid blue;
+  position: absolute;
+  margin: auto;
+  left: 30%;
+  top: 30%;
+  padding: 5rem;
+}
+
+.board-table {
+  text-align: center;
+  cursor: default;
+}
+
+.board-cell {
+  border: 1px solid red;
+  padding: 1rem;
+}
+
+.board-cell:hover, .board-cell.active:hover {
+  background-color: rgb(240, 196, 0)
+}
+
+.board-cell.active {
+  background-color: turquoise;
+}
