@@ -13,8 +13,9 @@ code {
 }
 
 
-
 .board-container {
+  display: flex;
+  flex-direction: column;
   border: 1px solid blue;
   position: absolute;
   margin: auto;
@@ -39,4 +40,11 @@ code {
 
 .board-cell.active {
   background-color: turquoise;
+}
+
+.button-next {
+  margin-top: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0.4rem 1rem;
 }

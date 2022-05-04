@@ -53,20 +53,72 @@ const Board = () => {
     clickedCellAlive = status
   }
 
+  function iterate(){
+    //let grid = [...gameBoard]
+    let next = gameBoard.map(row => {
+    return row.map(cell => {
+        return {
+          id: cell.id,
+          alive: cell.alive,
+          row: cell.row,
+          col: cell.col
+        }
+      })
+    })
+
+    for(let i = 0; i < gameBoard.length; i++){
+      for(let j = 0; j < gameBoard[0].length; j++){
+        let sum = 0;
+        if(i !== 0 && gameBoard[i-1][j].alive)
+          sum++
+        if(j !== 0 && gameBoard[i][j-1].alive)
+          sum++
+        if(i !== 0 && j !== 0 && gameBoard[i-1][j-1].alive)
+          sum++
+        if(i !== gameBoard.length-1 && gameBoard[i+1][j].alive)
+          sum++
+        if(j !== gameBoard[0].length-1 && gameBoard[i][j+1].alive)
+          sum++
+        if(i !== gameBoard.length-1 && j !== gameBoard[0].length-1 && gameBoard[i+1][j+1].alive)
+          sum++
+        if(i !== 0 && j !== gameBoard[0].length-1 && gameBoard[i-1][j+1].alive)
+          sum++
+        if(i !== gameBoard.length-1 && j !== 0 && gameBoard[i+1][j-1].alive)
+          sum++
+    
+        if(gameBoard[i][j].alive){
+          if(sum < 2 || sum > 3)
+            next[i][j].alive = false;
+          else
+            next[i][j].alive = true;
+        }
+        else{
+          if(sum === 3)
+            next[i][j].alive = true
+          else
+            next[i][j].alive = false
+        } //else
+      } //inner loop
+    } //outer loop
+
+    setGameBoard(next)
+  } //iterate()
+
   let rowKey = 0;
 
   return (
-    <div className='board-container'>
-      <table className='board-table'>
-        <tbody>
-          {gameBoard.map(row => 
-            <Row gameBoardRow={row} key={rowKey++} onEnter={setActive}
-                  setMouseDown={setMouseDown} setMouseUp={setMouseUp}/>
-          )}
-        </tbody>
-      </table>
-    </div>
-    
+      <div className='board-container'>
+        <table className='board-table'>
+          <tbody>
+            {gameBoard.map(row => 
+              <Row gameBoardRow={row} key={rowKey++} onEnter={setActive}
+                    setMouseDown={setMouseDown} setMouseUp={setMouseUp}/>
+            )}
+          </tbody>
+        </table>
+
+        <button className='button-next' onClick={() => iterate()}>Next Iteration</button>
+      </div> 
   )
 }
 
