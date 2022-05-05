@@ -171,6 +171,7 @@ const Board = () => {
   }
 
   function onDelayChange(e){
+    e.preventDefault()
     setPlayDelay(delayValues[e.target.value]);
   }
 
