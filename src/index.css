@@ -17,8 +17,7 @@ code {
 
 h1 {
   font-family:'Open Sans';
-  font-size: 4rem;
-  margin: 0 auto;
+  font-size: 4em;
   text-align: center;
   font-weight: 500;
 }
@@ -28,14 +27,19 @@ p {
 }
 
 .app-container {
+  display:flex;
+  flex-direction: column;
+}
+
+.board-container {
   display: flex;
   justify-content: center;
   flex-direction: column;
   position: absolute;
-  margin: 2rem auto;
+  margin: 2em auto;
   width: fit-content;
-  border: 0.2rem dashed #000000;
-  padding: 3rem;
+  border: 0.2em dashed #000000;
+  padding: 3em;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
@@ -50,8 +54,8 @@ p {
 }
 
 .board-cell {
-  border: 1px solid rgb(0, 102, 5);
-  padding: 1rem;
+  border: 0.1em solid rgb(0, 102, 5);
+  padding: 0.5em;
 }
 
 .board-cell:hover, .board-cell.active:hover {
@@ -65,16 +69,16 @@ p {
 .button-container {
   display: flex;
   justify-content: center;
-  gap: 1rem;
+  gap: 1em;
 }
 
 .button {
   font-family: 'Open Sans';
-  margin-top: 1rem;
+  margin-top: 1em;
   margin-left: auto;
   margin-right: auto;
-  padding: 0.4rem 1rem;
-  border: 0.2rem solid green;
+  padding: 0.4em 1em;
+  border: 0.2em solid green;
 
   flex-grow: 1
 }
@@ -84,7 +88,7 @@ p {
 }
 
 .button:hover, .button-active {
-  border: 0.2rem solid rgb(46, 201, 46);
+  border: 0.2em solid rgb(46, 201, 46);
 }
 
 .slider {

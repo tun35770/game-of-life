@@ -13,7 +13,7 @@ const Board = () => {
   gameBoardRef.current = gameBoard
   const [playDelay, setPlayDelay] = useState(1000)
   const [gameState, setGameState] = useState('stopped')
-  let boardSize = 16;
+  let boardSize = 24;
 
   useEffect(() => {
     initializeBoard()
@@ -26,6 +26,7 @@ const Board = () => {
       play()
   }, [playDelay])
 
+  //sets up board with all cells not alive
   function initializeBoard(){
     let newBoard = [];
     for(let i = 0; i < boardSize; i++){
@@ -45,7 +46,8 @@ const Board = () => {
     setGameBoard(newBoard)
   }
 
-  function setActive(id){
+  //sets cell with cell.id===id as alive
+  function setAlive(id){
     //setStocks(stocks.map(stock => stock.id === id ? {...stock, autoUpdate: !stock.autoUpdate} : stock))
     if(mouseIsDown){
       setGameBoard(gameBoardRef.current.map(row => 
@@ -65,6 +67,7 @@ const Board = () => {
     clickedCellAlive = status
   }
 
+  //plays simulation 
   function play(){
     if(!playInterval){
       playInterval = setInterval(step, playDelay);
@@ -72,6 +75,7 @@ const Board = () => {
     }
   }
 
+  //pauses simulation
   function pause(){
     if(playInterval){
       clearInterval(playInterval)
@@ -80,6 +84,7 @@ const Board = () => {
     }
   }
 
+  //steps through game one iteration
   function step(){
     let next = gameBoardRef.current.map(row => {
     return row.map(cell => {
@@ -135,16 +140,20 @@ const Board = () => {
     }
   } //step()
 
+  //resets board
   function clear(){
     pause()
     initializeBoard()
     setGameState('stopped')
   }
 
+  //stops playInterval without needing to clear board
   function stop(){
     pause()
     setGameState('stopped')
   }
+
+  //returns true if no cells are alive
   function checkBoardEmpty(){
     let flag = true;
 
@@ -172,7 +181,7 @@ const Board = () => {
         <table className='board-table'>
           <tbody>
             {gameBoardRef.current.map(row => 
-              <Row gameBoardRow={row} key={rowKey++} onEnter={setActive}
+              <Row gameBoardRow={row} key={rowKey++} onEnter={setAlive}
                     setMouseDown={setMouseDown} setMouseUp={setMouseUp}/>
             )}
           </tbody>
