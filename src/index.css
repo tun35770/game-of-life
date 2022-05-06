@@ -7,7 +7,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  background-color:rgb(167, 167, 167);
+  background-color:rgb(0, 0, 0);
 }
 
 code {
@@ -15,13 +15,17 @@ code {
     monospace;
 }
 
+h1, p {
+  color: rgb(4, 161, 12);
+  font-weight: bold;
+}
+
 h1 {
   position: relative;
   font-family:'Open Sans';
   font-size: 4em;
   text-align: center;
-  font-weight: 500;
-
+  margin-top: 1em;
   left: 50%;
   transform: translate(-50%, 0);
 }
@@ -35,7 +39,7 @@ p {
   justify-content: center;
   flex-direction: column;
   position: absolute;
-  margin: 2em auto;
+  margin: 0 auto;
   width: fit-content;
   padding: 3em;
   left: 50%;
@@ -51,7 +55,7 @@ p {
 }
 
 .board-cell {
-  border: 0.1em solid rgb(0, 102, 5);
+  border: 0.125em outset rgb(0, 102, 5);
 }
 
 .board-cell-small{
@@ -75,7 +79,7 @@ p {
 }
 
 .board-cell.active {
-  background-color: rgb(0, 102, 5);
+  background-color: rgb(4, 161, 12);
 }
 
 .button-container {

@@ -5,13 +5,13 @@ import { useState, useEffect, useLayoutEffect, useRef} from 'react'
 let mouseIsDown = false
 let clickedCellAlive = false
 let playInterval;
-let delayValues = [10,50,100,200,500,1000,2000,3000]
+let delayValues = [1000,500,250,100,50,10]
 const Board = () => {
 
   const [gameBoard, setGameBoard] = useState([[]])
   const gameBoardRef = useRef({})
   gameBoardRef.current = gameBoard
-  const [playDelay, setPlayDelay] = useState(1000)
+  const [playDelay, setPlayDelay] = useState(250)
   const [gameState, setGameState] = useState('stopped')
   const [boardSize, setBoardSize] = useState(16)
 
@@ -209,8 +209,8 @@ const Board = () => {
         </div>
 
         <div className='slider-container'>
-          <p>Game Speed (Delay in ms): {playDelay}</p>
-          <input type="range" min="0" max="7" defaultValue="4" className="slider slider-delay" onChange={((e) => onDelayChange(e))} onClick={(e)=>e.preventDefault()}/>
+          <p>Game Speed: {1000/playDelay} steps/sec (Delay in ms: {playDelay})</p>
+          <input type="range" min="0" max="5" defaultValue="2" className="slider slider-delay" onChange={((e) => onDelayChange(e))} onClick={(e)=>e.preventDefault()}/>
         </div>
       </> 
   )
