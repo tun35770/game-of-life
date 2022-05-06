@@ -5,7 +5,7 @@ import Footer from './Footer.js'
 const HowToPlay = () => {
   return (
     <div className='howtoplay-container'>
-        <Link to='/'><span>Back to Game</span></Link>
+        <Link to='/game-of-life'><span>Back to Game</span></Link>
         <h1>How it Works</h1>
 
         <div className='howtoplay-explanation-container'>
