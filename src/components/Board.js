@@ -1,6 +1,6 @@
 import React from 'react'
 import Row from './Row.js'
-import { useState, useEffect, useRef} from 'react'
+import { useState, useEffect, useLayoutEffect, useRef} from 'react'
 
 let mouseIsDown = false
 let clickedCellAlive = false
@@ -20,13 +20,13 @@ const Board = () => {
   }, [])
 
   useEffect(() => {
-    let int = playInterval
+    let interval = playInterval
     pause()
-    if(int)
+    if(interval)
       play()
   }, [playDelay])
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     initializeBoard()
   }, [boardSize])
 
@@ -195,7 +195,7 @@ const Board = () => {
         <table className='board-table' onMouseEnter={setMouseUp}>
           <tbody>
             {gameBoardRef.current.map(row => 
-              <Row gameBoardRow={row} key={rowKey++} onEnter={setAlive}
+              <Row gameBoardRow={row} key={rowKey++} boardSize={boardSize} onEnter={setAlive}
                     setMouseDown={setMouseDown} setMouseUp={setMouseUp}/>
             )}
           </tbody>

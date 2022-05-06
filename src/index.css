@@ -52,7 +52,22 @@ p {
 
 .board-cell {
   border: 0.1em solid rgb(0, 102, 5);
+}
+
+.board-cell-small{
+  padding: 1em;
+}
+
+.board-cell-medium{
+  padding: 0.7em;
+}
+
+.board-cell-large{
   padding: 0.5em;
+}
+
+.board-cell-xlarge{
+  padding: 0.4em;
 }
 
 .board-cell:hover, .board-cell.active:hover {
