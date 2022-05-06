@@ -8,12 +8,20 @@ body {
   background-color:rgb(0, 0, 0);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.howtoplay-container a {
+  font-size: 2em;
+
 }
 
-h1, p {
+a {
+  margin-top: 0.5em;
+}
+
+a span:hover {
+  color:rgb(146, 247, 151);
+}
+
+h1, h2, p, a {
   color: rgb(4, 161, 12);
   font-weight: 100;
 }
@@ -82,6 +90,8 @@ h1 {
 }
 
 .button {
+  font-family: 'Inconsolata';
+  font-weight: bold;
   margin-top: 1em;
   margin-left: auto;
   margin-right: auto;
@@ -133,6 +143,41 @@ h1 {
   border-radius: 50%;
   background: rgb(0, 102, 5);
   cursor: pointer;
+}
+
+.howtoplay-container h1{
+  text-align: center;
+}
+
+.howtoplay-explanation-container {
+  text-align: left;
+  margin: 1em;
+}
+
+.howtoplay-explanation-container .text-image-inline {
+  margin: 0 auto;
+  width: 90%;
+}
+
+.howtoplay-rule-container {
+  display:flex;
+  justify-content: center;
+  flex-flow: row nowrap;
+}
+
+.howtoplay-rule-container .text-image-inline {
+  max-width: 30%;
+}
+
+.text-image-inline {
+  text-align: center;
+  margin: 2em;
+}
+
+.text-image-inline p {
+  max-width: 75%;
+  margin: 0 auto;
+  margin-bottom: 1em;
 }
 
 footer {

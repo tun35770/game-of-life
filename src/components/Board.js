@@ -1,7 +1,8 @@
 import React from 'react'
 import Row from './Row.js'
-import { useState, useEffect, useLayoutEffect, useRef} from 'react'
 import Footer from './Footer.js'
+import { useState, useEffect, useLayoutEffect, useRef} from 'react'
+
 
 let mouseIsDown = false
 let clickedCellAlive = false
@@ -183,39 +184,39 @@ const Board = () => {
   let rowKey = 0;
 
   return (
-      <>
-        <h1>Game of Life</h1>
+    <>
+    <h1>Game of Life</h1>
+    
+    <div className='size-container'>
+      <button className='button button-size' onClick={() => setBoardSize(10)}>10x10</button>
+      <button className='button button-size' onClick={() => setBoardSize(16)}>16x16</button>
+      <button className='button button-size' onClick={() => setBoardSize(24)}>24x24</button>
+      <button className='button button-size' onClick={() => setBoardSize(36)}>36x36</button>
+    </div>
 
-        <div className='size-container'>
-          <button className='button button-size' onClick={() => setBoardSize(10)}>10x10</button>
-          <button className='button button-size' onClick={() => setBoardSize(16)}>16x16</button>
-          <button className='button button-size' onClick={() => setBoardSize(24)}>24x24</button>
-          <button className='button button-size' onClick={() => setBoardSize(36)}>36x36</button>
-        </div>
+    <table className='board-table' onMouseEnter={setMouseUp}>
+      <tbody>
+        {gameBoardRef.current.map(row => 
+          <Row gameBoardRow={row} key={rowKey++} boardSize={boardSize} onEnter={setAlive}
+                setMouseDown={setMouseDown} setMouseUp={setMouseUp}/>
+        )}
+      </tbody>
+    </table>
 
-        <table className='board-table' onMouseEnter={setMouseUp}>
-          <tbody>
-            {gameBoardRef.current.map(row => 
-              <Row gameBoardRow={row} key={rowKey++} boardSize={boardSize} onEnter={setAlive}
-                    setMouseDown={setMouseDown} setMouseUp={setMouseUp}/>
-            )}
-          </tbody>
-        </table>
+    <div className='button-container'>
+      <button className={'button button-play' + (gameState==='playing' ? ' button-active' : '')} onClick={() => play()}>Play</button>
+      <button className={'button button-pause' + (gameState ==='paused' ? ' button-active' : '')} onClick={() => pause()}>Pause</button>
+      <button className='button button-step' onClick={() => step()}>Step</button>
+      <button className='button button-clear' onClick={() => clear()}>Clear</button> 
+    </div>
 
-        <div className='button-container'>
-          <button className={'button button-play' + (gameState==='playing' ? ' button-active' : '')} onClick={() => play()}>Play</button>
-          <button className={'button button-pause' + (gameState ==='paused' ? ' button-active' : '')} onClick={() => pause()}>Pause</button>
-          <button className='button button-step' onClick={() => step()}>Step</button>
-          <button className='button button-clear' onClick={() => clear()}>Clear</button> 
-        </div>
+    <div className='slider-container'>
+      <p>Game Speed: {1000/playDelay} steps/sec (Delay in ms: {playDelay})</p>
+      <input type="range" min="0" max="5" defaultValue="2" className="slider slider-delay" onChange={((e) => onDelayChange(e))} onClick={(e)=>e.preventDefault()}/>
+    </div>
 
-        <div className='slider-container'>
-          <p>Game Speed: {1000/playDelay} steps/sec (Delay in ms: {playDelay})</p>
-          <input type="range" min="0" max="5" defaultValue="2" className="slider slider-delay" onChange={((e) => onDelayChange(e))} onClick={(e)=>e.preventDefault()}/>
-        </div>
-
-        <Footer />
-      </> 
+    <Footer />
+  </>
   )
 }
 
