@@ -1,4 +1,5 @@
 import Board from './components/Board';
+import Footer from './components/Footer.js'
 
 function App() {
   return (

@@ -1,6 +1,7 @@
 import React from 'react'
 import Row from './Row.js'
 import { useState, useEffect, useLayoutEffect, useRef} from 'react'
+import Footer from './Footer.js'
 
 let mouseIsDown = false
 let clickedCellAlive = false
@@ -212,6 +213,8 @@ const Board = () => {
           <p>Game Speed: {1000/playDelay} steps/sec (Delay in ms: {playDelay})</p>
           <input type="range" min="0" max="5" defaultValue="2" className="slider slider-delay" onChange={((e) => onDelayChange(e))} onClick={(e)=>e.preventDefault()}/>
         </div>
+
+        <Footer />
       </> 
   )
 }
