@@ -46,6 +46,12 @@ const HowToPlay = () => {
             <img src={require('../images/overcrowding.png')} alt='Overcrowded cell' />
             <p>(The center cell will die, as it has 4 live neighbors)</p>
             </div>
+            
+            <div className='text-image-inline'>
+            <p>If a dead cell has exactly 3 live neighbors, it will become alive!</p> 
+            <img src={require('../images/deadtoalive.png')} alt='Dead to alive cell' />
+            <p>(The yellow cell will become alive, as it has 3 live neighbors)</p>
+            </div>
         </div>
         <Footer />
     </div>
